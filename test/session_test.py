@@ -92,7 +92,7 @@ class SessionTest(TestCase):
         scope = ["write_products"]
         permission_url = session.create_permission_url(scope, "my_redirect_uri.com")
         self.assertEqual(
-            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&redirect_uri=my_redirect_uri.com&scope=write_products",
+            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&grant_options%5B%5D=value&redirect_uri=my_redirect_uri.com&scope=write_products",
             self.normalize_url(permission_url),
         )
 
@@ -102,7 +102,7 @@ class SessionTest(TestCase):
         scope = ["write_products", "write_customers"]
         permission_url = session.create_permission_url(scope, "my_redirect_uri.com")
         self.assertEqual(
-            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&redirect_uri=my_redirect_uri.com&scope=write_products%2Cwrite_customers",
+            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&grant_options%5B%5D=value&redirect_uri=my_redirect_uri.com&scope=write_products%2Cwrite_customers",
             self.normalize_url(permission_url),
         )
 
@@ -112,7 +112,7 @@ class SessionTest(TestCase):
         scope = []
         permission_url = session.create_permission_url(scope, "my_redirect_uri.com")
         self.assertEqual(
-            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&redirect_uri=my_redirect_uri.com&scope=",
+            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&grant_options%5B%5D=value&redirect_uri=my_redirect_uri.com&scope=",
             self.normalize_url(permission_url),
         )
 
@@ -122,7 +122,7 @@ class SessionTest(TestCase):
         scope = []
         permission_url = session.create_permission_url(scope, "my_redirect_uri.com", state="mystate")
         self.assertEqual(
-            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&redirect_uri=my_redirect_uri.com&scope=&state=mystate",
+            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&grant_options%5B%5D=value&redirect_uri=my_redirect_uri.com&scope=&state=mystate",
             self.normalize_url(permission_url),
         )
 
@@ -132,7 +132,7 @@ class SessionTest(TestCase):
         scope = ["write_customers"]
         permission_url = session.create_permission_url(scope, "my_redirect_uri.com", state="mystate")
         self.assertEqual(
-            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&redirect_uri=my_redirect_uri.com&scope=write_customers&state=mystate",
+            "https://localhost.myshopify.com/admin/oauth/authorize?client_id=My_test_key&grant_options%5B%5D=value&redirect_uri=my_redirect_uri.com&scope=write_customers&state=mystate",
             self.normalize_url(permission_url),
         )
 
